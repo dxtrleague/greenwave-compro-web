@@ -1,18 +1,10 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+// import { prisma } from '@/lib/prisma';
+import dbData from '@/data/production-data.json';
 
 export async function GET() {
     try {
-        const programs = await prisma.program.findMany({
-            where: { isActive: true },
-            select: {
-                id: true,
-                title: true,
-                description: true,
-                iconName: true,
-            },
-            orderBy: { createdAt: 'asc' },
-        });
+        const programs = dbData.programs;
 
         return NextResponse.json({
             status: 'success',
@@ -29,8 +21,9 @@ export async function GET() {
 
 export async function POST(request: Request) {
     try {
-        const body = await request.json();
+        // const body = await request.json();
 
+        /*
         const newProgram = await prisma.program.create({
             data: {
                 title: body.title,
@@ -38,16 +31,18 @@ export async function POST(request: Request) {
                 iconName: body.iconName || "Target",
             }
         });
+        */
 
         return NextResponse.json({
             status: 'success',
-            data: { program: newProgram }
-        }, { status: 201 });
+            message: 'Fitur tulis data dinonaktifkan untuk mode statis (GitHub Pages).',
+            // data: { program: newProgram }
+        }, { status: 200 });
     } catch (error) {
         console.error("Create Program API Error:", error);
         return NextResponse.json({
             status: 'error',
-            message: 'Gagal menambahkan program baru.',
+            message: 'Gagal menambahkan program baru (Mode Statis).',
         }, { status: 500 });
     }
 }

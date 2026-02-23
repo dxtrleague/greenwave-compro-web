@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+// import { prisma } from '@/lib/prisma';
 
 export async function DELETE(
     request: Request,
@@ -7,6 +7,7 @@ export async function DELETE(
 ) {
     try {
         const id = (await params).id;
+        /*
         if (!id) {
             return NextResponse.json({ status: 'error', message: 'ID is required' }, { status: 400 });
         }
@@ -14,16 +15,17 @@ export async function DELETE(
         await prisma.product.delete({
             where: { id },
         });
+        */
 
         return NextResponse.json({
             status: 'success',
-            message: 'Produk berhasil dihapus',
+            message: `Produk ${id} berhasil dihapus (Simulasi Mode Statis)`,
         });
     } catch (error) {
         console.error("Delete Product API Error:", error);
         return NextResponse.json({
             status: 'error',
-            message: 'Gagal menghapus produk.',
+            message: 'Gagal menghapus produk (Mode Statis).',
         }, { status: 500 });
     }
 }

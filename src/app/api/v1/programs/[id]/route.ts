@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+// import { prisma } from '@/lib/prisma';
 
 export async function DELETE(
     request: Request,
@@ -7,6 +7,7 @@ export async function DELETE(
 ) {
     try {
         const id = (await params).id;
+        /*
         if (!id) {
             return NextResponse.json({ status: 'error', message: 'ID is required' }, { status: 400 });
         }
@@ -14,16 +15,17 @@ export async function DELETE(
         await prisma.program.delete({
             where: { id },
         });
+        */
 
         return NextResponse.json({
             status: 'success',
-            message: 'Program berhasil dihapus',
+            message: `Program ${id} berhasil dihapus (Simulasi Mode Statis)`,
         });
     } catch (error) {
         console.error("Delete Program API Error:", error);
         return NextResponse.json({
             status: 'error',
-            message: 'Gagal menghapus program.',
+            message: 'Gagal menghapus program (Mode Statis).',
         }, { status: 500 });
     }
 }

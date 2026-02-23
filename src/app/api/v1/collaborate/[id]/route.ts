@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+// import { prisma } from '@/lib/prisma';
 
 export async function PATCH(
     request: Request,
@@ -7,8 +7,9 @@ export async function PATCH(
 ) {
     try {
         const id = (await params).id;
-        const { status } = await request.json();
+        // const { status } = await request.json();
 
+        /*
         if (!id || !status) {
             return NextResponse.json({ status: 'error', message: 'ID and Status are required' }, { status: 400 });
         }
@@ -17,16 +18,18 @@ export async function PATCH(
             where: { id },
             data: { status },
         });
+        */
 
         return NextResponse.json({
             status: 'success',
-            data: { collaboration: updatedCollab }
+            message: `Status kolaborasi ${id} diperbarui (Simulasi Mode Statis).`
+            // data: { collaboration: updatedCollab }
         });
     } catch (error) {
         console.error("Update Collaboration Status Error:", error);
         return NextResponse.json({
             status: 'error',
-            message: 'Gagal memperbarui status kolaborasi.',
+            message: 'Gagal memperbarui status kolaborasi (Mode Statis).',
         }, { status: 500 });
     }
 }
@@ -37,6 +40,7 @@ export async function DELETE(
 ) {
     try {
         const id = (await params).id;
+        /*
         if (!id) {
             return NextResponse.json({ status: 'error', message: 'ID is required' }, { status: 400 });
         }
@@ -44,16 +48,17 @@ export async function DELETE(
         await prisma.collaboration.delete({
             where: { id },
         });
+        */
 
         return NextResponse.json({
             status: 'success',
-            message: 'Pesan kemitraan berhasil dihapus',
+            message: `Pesan kemitraan ${id} berhasil dihapus (Simulasi Mode Statis)`,
         });
     } catch (error) {
         console.error("Delete Collaboration Error:", error);
         return NextResponse.json({
             status: 'error',
-            message: 'Gagal menghapus pesan kemitraan.',
+            message: 'Gagal menghapus pesan kemitraan (Mode Statis).',
         }, { status: 500 });
     }
 }

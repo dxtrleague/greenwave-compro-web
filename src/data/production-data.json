@@ -1,0 +1,118 @@
+{
+  "exportedAt": "2026-02-23T19:02:15.162Z",
+  "impactMetrics": [
+    {
+      "id": "1937a293-d500-42b7-96d6-042d4e7b6e2e",
+      "title": "Pohon Ditanam ",
+      "value": "125k",
+      "iconName": "TrendingUp",
+      "isActive": 1,
+      "createdAt": 1771663451296,
+      "updatedAt": 1771663451296
+    },
+    {
+      "id": "4ab0ac90-35ae-426e-b071-a44b0d8a6291",
+      "title": "Peningkatan Pendapatan Masyarakat",
+      "value": "58%",
+      "iconName": "TrendingUp",
+      "isActive": 1,
+      "createdAt": 1771873335162,
+      "updatedAt": 1771873335162
+    },
+    {
+      "id": "0c3fd089-d1e3-4d4e-bc06-2daa4ffd7d78",
+      "title": "Tingkat Kelulushidupan",
+      "value": "73%",
+      "iconName": "ShieldCheck",
+      "isActive": 1,
+      "createdAt": 1771873335162,
+      "updatedAt": 1771873335162
+    },
+    {
+      "id": "acef4b1d-f1a8-4e26-b20a-fbfa0569cd40",
+      "title": "Desa Terberdayakan",
+      "value": "120+",
+      "iconName": "Users",
+      "isActive": 1,
+      "createdAt": 1771873335162,
+      "updatedAt": 1771873335162
+    }
+  ],
+  "programs": [
+    {
+      "id": "e252f500-bad0-4cee-b4f6-6e66388046e4",
+      "title": "Pemulihan Ekosistem Pesisir (Environmental Protection)",
+      "description": "Konservasi mangrove berbasis inovasi teknologi untuk memastikan pertumbuhan maksimal dan restorasi garis pantai secara efektif.",
+      "iconName": "ShieldCheck",
+      "isActive": 1,
+      "createdAt": 1771873335162,
+      "updatedAt": 1771873335162
+    },
+    {
+      "id": "cec916e5-b5f2-4295-92fe-bd1e08dd51e9",
+      "title": "Produk Turunan Mangrove (Economic Empowerment)",
+      "description": "Menciptakan nilai tambah ekonomi tanpa merusak alam. Pendekatan sirkuler ini memberdayakan komunitas akar rumput.",
+      "iconName": "BriefcaseBusiness",
+      "isActive": 1,
+      "createdAt": 1771873335162,
+      "updatedAt": 1771873335162
+    },
+    {
+      "id": "e8983516-5417-4580-81da-ffb4cb35069d",
+      "title": "Edukasi & Advokasi Pesisir",
+      "description": "Program pelatihan dan pendampingan bagi masyarakat lokal untuk memahami pentingnya ekosistem pesisir dan cara mengelolanya secara berkelanjutan.",
+      "iconName": "Presentation",
+      "isActive": 1,
+      "createdAt": 1771873335162,
+      "updatedAt": 1771873335162
+    }
+  ],
+  "products": [
+    {
+      "id": "aeae7b8d-fc4e-48e6-9203-6f9884733969",
+      "name": "Madu Hutan Bakau",
+      "category": "Food",
+      "description": "Madu murni hasil nektar bunga bakau, dipanen secara lestari oleh komunitas pesisir.",
+      "price": 85000,
+      "imageUrl": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&q=80&w=800",
+      "inStock": 1,
+      "createdAt": 1771873335162,
+      "updatedAt": 1771873335162
+    },
+    {
+      "id": "03a3660a-bfd8-40bd-80e8-33ada87ff649",
+      "name": "Keripik Buah Lindur",
+      "category": "Food",
+      "description": "Camilan tradisional bergizi tinggi dari olahan buah mangrove jenis Bruguiera.",
+      "price": 25000,
+      "imageUrl": "https://images.unsplash.com/photo-1621447509374-f2894563a623?auto=format&fit=crop&q=80&w=800",
+      "inStock": 1,
+      "createdAt": 1771873335162,
+      "updatedAt": 1771873335162
+    },
+    {
+      "id": "f7104029-7211-47af-8010-140528114e89",
+      "name": "Batik Pewarna Alami",
+      "category": "Crafts",
+      "description": "Kain batik indah yang menggunakan ekstrak kulit batang mangrove yang gugur sebagai pewarna alami.",
+      "price": 350000,
+      "imageUrl": "https://images.unsplash.com/photo-1544365558-35aa4afcf11f?auto=format&fit=crop&q=80&w=800",
+      "inStock": 1,
+      "createdAt": 1771873335162,
+      "updatedAt": 1771873335162
+    }
+  ],
+  "collaborations": [
+    {
+      "id": "f9531315-b02e-4af2-8600-362bdd12c053",
+      "companyName": "PT ALIANSI GOLONGAN KANAN",
+      "focusArea": "csr",
+      "message": "mari kita coba berkolaborasi",
+      "email": "aliansigolongankanan@gmail.com",
+      "status": "REVIEWED",
+      "isEmailSent": 0,
+      "createdAt": 1771664422399,
+      "updatedAt": 1771746748600
+    }
+  ]
+}

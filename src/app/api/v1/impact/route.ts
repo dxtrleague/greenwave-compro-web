@@ -1,18 +1,10 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+// import { prisma } from '@/lib/prisma';
+import dbData from '@/data/production-data.json';
 
 export async function GET() {
     try {
-        const impactMetrics = await prisma.impactMetric.findMany({
-            where: { isActive: true },
-            select: {
-                id: true,
-                title: true,
-                value: true,
-                iconName: true,
-            },
-            orderBy: { createdAt: 'asc' },
-        });
+        const impactMetrics = dbData.impactMetrics;
 
         return NextResponse.json({
             status: 'success',
@@ -29,8 +21,9 @@ export async function GET() {
 
 export async function POST(request: Request) {
     try {
-        const body = await request.json();
+        // const body = await request.json();
 
+        /*
         const newMetric = await prisma.impactMetric.create({
             data: {
                 title: body.title,
@@ -38,16 +31,18 @@ export async function POST(request: Request) {
                 iconName: body.iconName || "TrendingUp",
             }
         });
+        */
 
         return NextResponse.json({
             status: 'success',
-            data: { newMetric }
-        }, { status: 201 });
+            message: 'Fitur tulis data dinonaktifkan untuk mode statis (GitHub Pages).',
+            // data: { newMetric }
+        }, { status: 200 }); // Changed to 200 for mock
     } catch (error) {
         console.error("Create Impact API Error:", error);
         return NextResponse.json({
             status: 'error',
-            message: 'Gagal menambahkan data metrik dampak.',
+            message: 'Gagal menambahkan data metrik dampak (Mode Statis).',
         }, { status: 500 });
     }
 }

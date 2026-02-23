@@ -1,20 +1,10 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+// import { prisma } from '@/lib/prisma';
+import dbData from '@/data/production-data.json';
 
 export async function GET() {
     try {
-        const products = await prisma.product.findMany({
-            where: { inStock: true },
-            select: {
-                id: true,
-                name: true,
-                category: true,
-                description: true,
-                price: true,
-                imageUrl: true,
-            },
-            orderBy: { createdAt: 'desc' },
-        });
+        const products = dbData.products;
 
         return NextResponse.json({
             status: 'success',
@@ -31,8 +21,9 @@ export async function GET() {
 
 export async function POST(request: Request) {
     try {
-        const body = await request.json();
+        // const body = await request.json();
 
+        /*
         const newProduct = await prisma.product.create({
             data: {
                 name: body.name,
@@ -42,16 +33,18 @@ export async function POST(request: Request) {
                 imageUrl: body.imageUrl || null,
             }
         });
+        */
 
         return NextResponse.json({
             status: 'success',
-            data: { product: newProduct }
-        }, { status: 201 });
+            message: 'Fitur tulis data dinonaktifkan untuk mode statis (GitHub Pages).',
+            // data: { product: newProduct }
+        }, { status: 200 });
     } catch (error) {
         console.error("Create Product API Error:", error);
         return NextResponse.json({
             status: 'error',
-            message: 'Gagal menambahkan produk baru.',
+            message: 'Gagal menambahkan produk baru (Mode Statis).',
         }, { status: 500 });
     }
 }

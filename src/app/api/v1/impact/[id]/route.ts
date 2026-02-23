@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+// import { prisma } from '@/lib/prisma';
 
 export async function DELETE(
     request: Request,
@@ -8,19 +8,21 @@ export async function DELETE(
     try {
         const { id } = await params;
 
+        /*
         await prisma.impactMetric.delete({
             where: { id }
         });
+        */
 
         return NextResponse.json({
             status: 'success',
-            message: 'Metrik berhasil dihapus.'
+            message: `Metrik ${id} berhasil dihapus (Simulasi Mode Statis).`
         });
     } catch (error) {
         console.error("Delete Impact API Error:", error);
         return NextResponse.json({
             status: 'error',
-            message: 'Gagal menghapus metrik.'
+            message: 'Gagal menghapus metrik (Mode Statis).'
         }, { status: 500 });
     }
 }

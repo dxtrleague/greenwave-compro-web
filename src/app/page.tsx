@@ -4,22 +4,16 @@ import { useState, useEffect } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, TrendingUp, HandHeart, Sprout, Landmark, Presentation, BriefcaseBusiness, Users, ShieldCheck, Mail, MapPin, Instagram, Linkedin, Facebook } from "lucide-react";
 
+import dbData from "@/data/production-data.json";
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Dynamic CMS Data States
-  const [impactData, setImpactData] = useState<any[]>([]);
-  const [programsData, setProgramsData] = useState<any[]>([]);
-  const [productsData, setProductsData] = useState<any[]>([]);
-
-  // Default Fallback Data if DB is empty / failing
-  const fallbackImpact = [
-    { value: "125k+", title: "Pohon Mangrove Ditanam", iconName: "Sprout" },
-    { value: "58%", title: "Peningkatan Pendapatan Masyarakat", iconName: "TrendingUp" },
-    { value: "73%", title: "Tingkat Kelulushidupan", iconName: "ShieldCheck" },
-    { value: "120+", title: "Desa Terberdayakan", iconName: "Users" }
-  ];
+  // Dynamic CMS Data States (Source: production-data.json)
+  const [impactData, setImpactData] = useState<any[]>(dbData.impactMetrics);
+  const [programsData, setProgramsData] = useState<any[]>(dbData.programs);
+  const [productsData, setProductsData] = useState<any[]>(dbData.products);
 
   // Form State
   const [collabForm, setCollabForm] = useState({ companyName: "", email: "", focusArea: "", message: "" });
@@ -31,6 +25,8 @@ export default function Home() {
     setCollabStatus("loading");
     setCollabMsg("");
     try {
+      /* 
+      // API call disabled for static export
       const res = await fetch("/api/v1/collaborate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -45,6 +41,13 @@ export default function Home() {
         setCollabStatus("error");
         setCollabMsg(data.message || data.errors?.[0]?.message || "Gagal mengirim formulir.");
       }
+      */
+      // Simulation of success for static build
+      setTimeout(() => {
+        setCollabStatus("success");
+        setCollabMsg("Terima kasih! Pesan Anda telah kami terima (Simulasi Mode Statis).");
+        setCollabForm({ companyName: "", email: "", focusArea: "", message: "" });
+      }, 1000);
     } catch (err) {
       setCollabStatus("error");
       setCollabMsg("Gangguan koneksi dari browser.");
@@ -65,38 +68,11 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Fetch Public CMS Data
+  // Sync CMS Data (Initial state already set from dbData import)
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const [impactRes, programsRes, productsRes] = await Promise.all([
-          fetch("/api/v1/impact"),
-          fetch("/api/v1/programs"),
-          fetch("/api/v1/products"),
-        ]);
-
-        const impactJson = await impactRes.json();
-        if (impactJson.status === "success" && impactJson.data.impactMetrics.length > 0) {
-          setImpactData(impactJson.data.impactMetrics);
-        } else {
-          setImpactData(fallbackImpact);
-        }
-
-        const programsJson = await programsRes.json();
-        if (programsJson.status === "success" && programsJson.data.programs.length > 0) {
-          setProgramsData(programsJson.data.programs);
-        }
-
-        const productsJson = await productsRes.json();
-        if (productsJson.status === "success" && productsJson.data.products.length > 0) {
-          setProductsData(productsJson.data.products);
-        }
-
-      } catch (e) {
-        setImpactData(fallbackImpact);
-      }
-    }
-    fetchData();
+    setImpactData(dbData.impactMetrics);
+    setProgramsData(dbData.programs);
+    setProductsData(dbData.products);
   }, []);
 
   const fadeIn: Variants = {

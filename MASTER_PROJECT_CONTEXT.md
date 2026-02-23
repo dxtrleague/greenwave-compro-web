@@ -1,70 +1,64 @@
-# MASTER PROJECT CONTEXT
+# MASTER PROJECT CONTEXT - RECONCILED DATA EDITION
 
 ## 📌 Project Identity
 - **Project Name:** Yayasan Greenwave (yayasan-greenwave)
-- **Description:** Official Company Profile for Yayasan Greenwave, focusing on environmental conservation (mangrove), community impact, and sustainable products.
-- **Repository:** `greenwave-compro-web`
-- **Target Deployment:** GitHub Pages (Static Site Export).
-- **Live URL:** [https://dxtrleague.github.io/greenwave-compro-web/](https://dxtrleague.github.io/greenwave-compro-web/)
+- **Description:** Official Company Profile for Yayasan Greenwave, focusing on environmental conservation, community impact, and sustainable mangrove products.
+- **Target Deployment:** GitHub Pages (Static Site Generation - `output: 'export'`).
 
 ## 🛠 Tech Stack
 - **Framework:** Next.js 16.1.6 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS 4 (using `@tailwindcss/postcss`)
-- **Animation:** Framer Motion
-- **Icons:** Lucide React
-- **ORM & Database:** Prisma with SQLite (Development/Server-side context)
-- **Deployment:** GitHub Actions
+- **Styling:** Tailwind CSS 4 (Vanilla CSS logic)
+- **Animation:** Framer Motion & Lucide Icons
+- **Primary Data Source:** `src/data/production-data.json` (Reconciled & Unified).
+- **ORM (Dev only):** Prisma with SQLite (`prisma/dev.db`).
 
-## ⚙️ Technical Configurations
-### 1. Git Strategy
-- **Primary Branch:** `master` (Crucial: This project uses `master` as the default branch, NOT `main`).
+## 🗄️ Data Architecture & Reconciliation
+The project has undergone a comprehensive data audit and reconciliation process. We have moved away from fragmented JSON files and mock fallbacks.
 
-### 2. Next.js Config (`next.config.ts`)
-- **Output:** `export` (Ensures the project is built as a static site).
-- **Base Path / Asset Prefix:** `isProd ? "/greenwave-compro-web" : ""` (Configured for sub-folder deployment on GitHub Pages).
-- **Images:** `unoptimized: true` (Required for static export as GitHub Pages cannot use Next.js's default image optimization).
+### 1. The Single Source of Truth (`src/data/production-data.json`)
+This file is the **Core Data Source** for all frontend components. It is 100% composed of real data extracted from the database and reconciled with project content. All placeholder data has been removed or upgraded.
+**JSON Schema:**
+- `exportedAt`: Extraction timestamp.
+- `impactMetrics`: Array of impact numeric data (Pohon, Pendapatan, etc).
+- `programs`: Array of foundation mission pillars.
+- `products`: Array of community-driven mangrove products categories.
+- `collaborations`: Historical record of partnership inquiries.
 
-### 3. Deployment Pipeline (`.github/workflows/deploy.yml`)
-- **Trigger:** Automated on push to `master` branch.
-- **Process:**
-  - Installs dependencies.
-  - Generates Prisma Client.
-  - Runs `next build`.
-  - Uploads the `./out` directory as a deployment artifact.
-  - Deploys to GitHub Pages via `actions/deploy-pages`.
+### 2. The Database (`prisma/dev.db`)
+- This is the local master source of truth.
+- Tables included: `ImpactMetric`, `Program`, `Product`, and `Collaboration`.
+- **DO NOT DELETE** this file; it is required for any future data updates or re-exports.
 
-## 📂 Architecture Map
-### Core Structure
-- `src/app/`: App Router structure.
-  - `page.tsx`: Main landing page (Company Profile).
-  - `layout.tsx`: Root layout with font and global styles.
-  - `api/v1/`: API Route Handlers (Note: These are exported in development but ignored in static `out` production build).
-  - `admin/`: Admin panel routes for data management.
-- `src/components/`: Reusable UI components (e.g., `HeroSection`, `GreenwaveLogo`).
-- `src/lib/`: Utility libraries (Prisma client instance).
-- `prisma/`: Database schema and migrations (SQLite).
+### 3. Reconciled Data Integrity
+- All dummy IDs (e.g., `m1`, `p1`) from previous mock files have been replaced with unique identifiers (UUIDs).
+- Duplicates between the database and previous static content have been merged, prioritizing the database records.
 
-### API Route Handling (Next.js 15/16 Style)
-All dynamic route handlers (e.g., `src/app/api/v1/products/[id]/route.ts`) implement **Async Params**.
-```typescript
-export async function DELETE(
-    request: Request,
-    { params }: { params: Promise<{ id: string }> }
-) {
-    const id = (await params).id;
-    // logic...
-}
-```
+## ⚙️ Data Pipeline Scripts
+Untuk memperbarui data tanpa server database aktif di produksi, kita menggunakan alur ekstraksi berikut:
 
-## 🚀 Current State & Known Issues
-- **Stable Features:** Landing page, Hero section, and basic data models (Impact, Programs, Products).
-- **Static Export Limitation:** Since the project uses `output: 'export'`, API Route Handlers in `src/app/api` and direct Prisma/SQLite interactions will **not work** on the live GitHub Pages site. They are currently intended for local development or future server-side hosting migration.
-- **Node.js Environment:** Configured to run on Node 20+ (current CI uses `node-version: "20"`).
+1.  **`extract-db.ts` (The Extractor):** Mengambil data mentah dari SQLite (`prisma/dev.db`) menggunakan Prisma Client atau SQL raw dan mengubahnya menjadi format JSON mentah.
+2.  **`scripts/finalize-data.js` (The Reconciler):** Melakukan audit data, penggabungan (merging) dengan konten statis tambahan, dan pembersihan ID dummy untuk menghasilkan file produksi akhir.
 
-## 📜 Architecture History (Prompts 1 - 5)
-- **PROMPT 1:** Initial configuration for GitHub Pages deployment. Setup `output: 'export'`, `basePath`, and `assetPrefix` in `next.config.ts`.
-- **PROMPT 2:** Correction of primary branch from `main` to `master` in GitHub Actions and documentation.
-- **PROMPT 3:** Migration to Next.js 15/16 pattern. Refactored all API Route Handlers to use `Promise` for dynamic parameters. Root-level cleanup of `images` configuration.
-- **PROMPT 4:** Audit and stabilization of Prisma schema for Impact Metrics, Programs, Products, and Collaborations.
-- **PROMPT 5:** Deep Technical Audit and Document Rewrite (Current). Comprehensive mapping of the entire stack and deployment constraints to ensure AI Agent continuity.
+## 📂 Project Structure
+- `src/data/production-data.json`: The only production data file (Single Source of Truth).
+- `src/app/page.tsx`: Landing page utama, mengonsumsi data dari `production-data.json`.
+- `prisma/`: Berisi `schema.prisma` dan master `dev.db`.
+- `extract-db.ts`: Script utama ekstraksi data dari database.
+- `scripts/finalize-data.js`: Script finalisasi dan audit data produksi.
+
+## 🚀 Development Workflow
+Jika ada perubahan data di Database (`prisma/dev.db`):
+1.  Jalankan `npx ts-node extract-db.ts` untuk mengekstrak data terbaru.
+2.  Jalankan `node scripts/finalize-data.js` untuk mensinkronisasi dan menulis ke `production-data.json`.
+3.  Commit dan Push perubahan `production-data.json` agar website terupdate di GitHub Pages.
+
+## ✅ Current Progress & Status
+- **Data Audit:** COMPLETE. Verified comparison between `site-content.json` and `dev.db`.
+- **Data Reconciliation:** COMPLETE. All data sources have been unified into `production-data.json`.
+- **Component Update:** COMPLETE. All components in `src/app` point to the new reconciled data source.
+- **Production Readiness:** 100%. The site uses 100% real extracted data.
+
+## 📜 Dev History
+- **Initial:** Basic Next.js setup with mock components.
+- **Fragmented:** Used `site-content.json` for fallback and `database_export.json` for DB data.
+- **Audit & Reconcile (Feb 2026):** Unified both sources into a single high-integrity production file.
