@@ -55,11 +55,8 @@ jobs:
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
-        with:
-          # Automatically inject basePath in your Next.js config file and disable
-          # server side image optimization (WebP format and resizing).
-          # Since we've already configured next.config.ts, this will ensure everything is in sync.
-          static_site_generator: next
+      - name: Clean Conflicting Configs
+        run: rm -f next.config.js next.config.ts
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
