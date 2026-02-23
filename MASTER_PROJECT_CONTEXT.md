@@ -1,30 +1,38 @@
 # MASTER PROJECT CONTEXT
 
 ## 1. Project Overview
-Proyek ini adalah sistem web Company Profile untuk GreenWave. Aplikasi ini sepenuhnya beroperasi secara statis (static export) dan dideploy ke **GitHub Pages**. Karena di-_host_ di sub-folder GitHub Pages, maka ada beberapa penyesuaian konfigurasi yang harus dijaga.
+Proyek ini adalah sistem web Company Profile untuk GreenWave. Aplikasi ini sepenuhnya beroperasi secara statis (**Static Export**) dan dideploy ke **GitHub Pages**. Karena di-_host_ di sub-folder GitHub Pages, maka ada beberapa penyesuaian konfigurasi yang harus dijaga untuk memastikan aset dan *routing* berjalan lancar.
 
 ## 2. Tech Stack
-- **Framework Utama**: Next.js 16+ (App Router)
+- **Framework Utama**: Next.js 16+ (App Router) - Output: `export`
 - **Bahasa**: TypeScript
 - **Styling**: Tailwind CSS
-- **Data Source**: Local JSON Data (sebagai migrasi dari Prisma)
-- **Deployment**: Static Export ke GitHub Pages
-- **Deployment Pipeline**: GitHub Actions otomatis menggunakan branch `master`. Step `npx prisma generate` telah dihapus karena dependensi runtime database tidak lagi diperlukan dalam proses build statis.
+- **Data Source**: Local JSON Data (`src/data/production-data.json`)
+- **Deployment**: GitHub Pages (Static Hosting)
+- **Deployment Pipeline**: GitHub Actions otomatis menggunakan branch `master`.
 
 ## 3. Architecture Map
-- **`src/app/`**: Folder utama untuk _routing_ aplikasi. Proyek ini hanya menyisakan rute publik yang mendukung *static export*.
-- **`src/data/`**: Berfungsi sebagai pusat data untuk keseluruhan situs (menggantikan Prisma _database layer_). Seluruh data lokal disalurkan dari sini.
-- **API & Admin Routes**: Sebelumnya terdapat pada sub-folder `src/app/api/` dan `src/app/admin/`. Keduanya telah dipindahkan ke `src/api_backup/` dan `src/admin_backup/` agar tidak mengganggu proses `next build` untuk *static export*.
+- **`src/app/`**: Berisi rute publik. Hanya mendukung komponen statis karena batasan *static export*.
+- **`src/data/`**: Pusat data utama aplikasi. Menggantikan peran database (Prisma/SQLite) untuk lingkungan produksi.
+- **Backup Folders**: 
+  - `src/api_backup/`: Berisi kode API yang tidak bisa digunakan dalam *static export*.
+  - `src/admin_backup/`: Berisi dashboard admin (dynamic) yang sementara dipisahkan dari build utama.
+  - `src/middleware_backup.ts.bak`: Middleware dinonaktifkan karena tidak didukung pada hosting statis.
 
 ## 4. Critical Configs
-- **Branch Deployment**: Wajib menggunakan branch `master` sebagai target penyelarasan dan *deployment* (hindari menyinggung atau menggunakan branch `main`).
-- **Unoptimized Images**: Konfigurasi gambar harus berada di level _root_ objek pada `next.config.ts` (menggunakan properti `images: { unoptimized: true }`), dan dilarang untuk diletakkan di dalam blok `experimental`.
-- **BasePath**: Aplikasi menggunakan `basePath` sebesar nama repositori saat berada dalam mode _production_, memastikan penautan file statis tidak rusak saat berjalan di sub-folder _domain_.
+- **next.config.mjs**: Menggunakan format `.mjs` untuk kompatibilitas build CI yang lebih baik.
+- **Static Constraints**:
+  - `images: { unoptimized: true }` wajib aktif.
+  - `basePath` & `assetPrefix` disetel ke `/greenwave-compro-web` pada produksi.
+  - `trailingSlash: true` diaktifkan untuk konsistensi URL di GitHub Pages.
+- **GitHub Actions (`deploy.yml`)**:
+  - `Setup Pages` disetel manual (tanpa `static_site_generator: next`) untuk menghindari konflik injeksi file `next.config.js` otomatis yang sering merusak konfigurasi `export`.
+  - Step `Clean Conflicting Configs` ditambahkan untuk menghapus config TS/JS otomatis yang muncul di runner.
 
 ## 5. Current Stability
-- **Build Status**: Stabil & Optimized.
-- **Fixes Applied**:
-  - _Build error_ akibat masalah peletakan `images.unoptimized` dalam `experimental` pada file `next.config.ts` telah diatasi dan dihapus.
-  - Implementasi *property access* pada _Zod Error_ di API route telah diperbarui dari penggunaan usang `.errors` menjadi `.issues`.
-  - Keseluruhan API _routing_ dinamis (`[id]`) telah diperbaiki untuk menyelesaikan *Async Params promise* dengan `const { id } = await params;`.
-  - Pembersihan GitHub Actions Pipeline: Step `Prisma generate` telah dihapus untuk mempercepat proses build dan menghindari kegagalan dependensi database.
+- **Build Status**: **STABLE** (Static Export Berhasil).
+- **Recent Fixes**:
+  - **CI/CD Fix**: Menyelesaikan masalah folder `out/` tidak ditemukan dengan menonaktifkan generator otomatis di GitHub Actions dan beralih ke `next.config.mjs`.
+  - **Static Optimization**: Menambahkan `export const dynamic = "force-static"` pada halaman utama untuk menjamin pembuatan aset statis saat proses build.
+  - **Route Cleanup**: Memindahkan seluruh komponen dinamis (API, Admin, Middleware) ke folder backup demi kelancaran proses `next build`.
+  - **Zod & Params**: Perbaikan manual pada *property access* Zod `.issues` dan asinkron params tetap dipertahankan dalam kode backup untuk referensi masa depan.
