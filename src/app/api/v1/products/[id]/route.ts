@@ -6,7 +6,7 @@ export async function DELETE(
     { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        const id = (await params).id;
+        const { id } = await params;
         /*
         if (!id) {
             return NextResponse.json({ status: 'error', message: 'ID is required' }, { status: 400 });

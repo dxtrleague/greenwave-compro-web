@@ -62,8 +62,6 @@ jobs:
           static_site_generator: next
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Generate Prisma Client (if needed)
-        run: npx prisma generate || echo "Prisma not found or failed, skipping..."
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact

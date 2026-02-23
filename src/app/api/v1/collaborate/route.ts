@@ -60,7 +60,7 @@ export async function POST(request: Request) {
             return NextResponse.json({
                 status: 'fail',
                 message: 'Validasi data gagal. Cek kembali isian Anda.',
-                errors: (error as z.ZodError).errors
+                errors: (error as z.ZodError).issues
             }, { status: 400 });
         }
 
