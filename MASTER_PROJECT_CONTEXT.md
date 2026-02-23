@@ -12,9 +12,9 @@ Proyek ini adalah sistem web Company Profile untuk GreenWave. Aplikasi ini sepen
 - **Deployment Pipeline**: GitHub Actions otomatis menggunakan branch `master`. Step `npx prisma generate` telah dihapus karena dependensi runtime database tidak lagi diperlukan dalam proses build statis.
 
 ## 3. Architecture Map
-- **`src/app/`**: Folder utama untuk _routing_ aplikasi. Sejalan dengan _breaking change_ di Next.js, seluruh penggunaan parameter rute dinamis bersifat _Promise_, sehingga wajib diakses secara asinkron (misalnya: `const { id } = await params`).
+- **`src/app/`**: Folder utama untuk _routing_ aplikasi. Proyek ini hanya menyisakan rute publik yang mendukung *static export*.
 - **`src/data/`**: Berfungsi sebagai pusat data untuk keseluruhan situs (menggantikan Prisma _database layer_). Seluruh data lokal disalurkan dari sini.
-- **API Routes**: Terdapat pada sub-folder `src/app/api/` yang merupakan simulasi mode statis. Seluruh validasi input menggunakan `Zod` dengan *error handling* standar terbaru.
+- **API & Admin Routes**: Sebelumnya terdapat pada sub-folder `src/app/api/` dan `src/app/admin/`. Keduanya telah dipindahkan ke `src/api_backup/` dan `src/admin_backup/` agar tidak mengganggu proses `next build` untuk *static export*.
 
 ## 4. Critical Configs
 - **Branch Deployment**: Wajib menggunakan branch `master` sebagai target penyelarasan dan *deployment* (hindari menyinggung atau menggunakan branch `main`).
