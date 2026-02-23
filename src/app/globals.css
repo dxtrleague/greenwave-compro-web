@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #61B58E;
+  --color-primary-dark: #357427;
+  --color-secondary: #79BDB7;
+  --color-secondary-light: #D9EEF3;
+  --color-teal: #016b62;
+  --color-accent-dark: #000000;
+  --color-accent-light: #ffffff;
+
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Libre Baskerville", serif;
+}
+
+body {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent-dark);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

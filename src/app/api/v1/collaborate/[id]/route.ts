@@ -1,0 +1,59 @@
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+
+export async function PATCH(
+    request: Request,
+    { params }: { params: Promise<{ id: string }> }
+) {
+    try {
+        const id = (await params).id;
+        const { status } = await request.json();
+
+        if (!id || !status) {
+            return NextResponse.json({ status: 'error', message: 'ID and Status are required' }, { status: 400 });
+        }
+
+        const updatedCollab = await prisma.collaboration.update({
+            where: { id },
+            data: { status },
+        });
+
+        return NextResponse.json({
+            status: 'success',
+            data: { collaboration: updatedCollab }
+        });
+    } catch (error) {
+        console.error("Update Collaboration Status Error:", error);
+        return NextResponse.json({
+            status: 'error',
+            message: 'Gagal memperbarui status kolaborasi.',
+        }, { status: 500 });
+    }
+}
+
+export async function DELETE(
+    request: Request,
+    { params }: { params: Promise<{ id: string }> }
+) {
+    try {
+        const id = (await params).id;
+        if (!id) {
+            return NextResponse.json({ status: 'error', message: 'ID is required' }, { status: 400 });
+        }
+
+        await prisma.collaboration.delete({
+            where: { id },
+        });
+
+        return NextResponse.json({
+            status: 'success',
+            message: 'Pesan kemitraan berhasil dihapus',
+        });
+    } catch (error) {
+        console.error("Delete Collaboration Error:", error);
+        return NextResponse.json({
+            status: 'error',
+            message: 'Gagal menghapus pesan kemitraan.',
+        }, { status: 500 });
+    }
+}

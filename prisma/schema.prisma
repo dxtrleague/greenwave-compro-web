@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ==========================================
+// 1. IMPACT METRICS TABLE
+// Menyimpan data numerik dampak agregat
+// ==========================================
+model ImpactMetric {
+  id        String   @id @default(uuid())
+  title     String   // e.g., "Pohon Ditanam", "Peningkatan Pendapatan"
+  value     String   // e.g., "125k+", "58%"  (Bisa disesuaikan tipenya jika hitungan murni, ini untuk text label tampilan)
+  iconName  String?  // Nama icon (e.g., "Sprout", "TrendingUp") dari Lucide
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ==========================================
+// 2. PROGRAMS TABLE
+// Pilar misi atau program utama Yayasan
+// ==========================================
+model Program {
+  id          String   @id @default(uuid())
+  title       String   // e.g., "Environmental Protection"
+  description String
+  iconName    String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==========================================
+// 3. PRODUCTS TABLE
+// Katalog produk turunan mangrove komunitas
+// ==========================================
+model Product {
+  id          String   @id @default(uuid())
+  name        String   // e.g., "Madu Hutan Bakau"
+  category    String   // e.g., "Food", "Crafts"
+  description String
+  price       Float
+  imageUrl    String?
+  inStock     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==========================================
+// 4. COLLABORATIONS TABLE
+// Integrasi manajemen partner & pesan kontak
+// ==========================================
+model Collaboration {
+  id              String   @id @default(uuid())
+  companyName     String
+  focusArea       String   // "CSR", "ESG", "Donor", "Other"
+  message         String
+  email           String
+  status          String   @default("PENDING") // PENDING, REVIEWED, CONTACTED, PARTNER
+  isEmailSent     Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
