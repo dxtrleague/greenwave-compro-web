@@ -93,14 +93,9 @@ export default function Home() {
       <header className="fixed top-0 w-full z-50 bg-[#ffffff]/90 backdrop-blur-md border-b border-[#D9EEF3]">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full border-[3px] border-[#61B58E] flex items-center justify-center relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#61B58E] to-[#79BDB7] rounded-full opacity-30"></div>
-              <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-[#016b62]" stroke="currentColor" strokeWidth="2">
-                <path d="M2 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8-8-3.6-8-8z" strokeDasharray="4 2" />
-                <path d="M6 14c2-2 4-2 6 0s4-2 6 0" />
-              </svg>
-            </div>
-            <span className="font-heading font-bold text-xl text-[#357427]">Greenwave</span>
+            {/* emblem removed */}
+            {/* logo image instead of text - will use cleaned gre-clean.jpg */}
+            <img src="/gre-clean.jpg" alt="Greenwave" className="h-80 w-auto" />
           </div>
 
           <nav className="hidden md:flex gap-8 text-[15px] font-medium text-[#171717]">
@@ -164,7 +159,7 @@ export default function Home() {
 
         <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="relative z-10 max-w-[1440px] mx-auto w-full">
           <div className="max-w-4xl text-center md:text-left mx-auto md:mx-0">
-            <motion.h1 variants={fadeIn} className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold leading-tight md:leading-tight mb-6 text-white">
+            <motion.h1 variants={fadeIn} className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold leading-tight md:leading-tight mb-6 text-white">
               Memberdayakan Pesisir, <br className="hidden md:block" />
               <span className="text-[#61B58E]">Menjaga Masa Depan.</span>
             </motion.h1>
@@ -199,7 +194,7 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-[#D9EEF3]">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24 text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-5xl font-bold mb-6 text-[#016b62]">
+            <h2 className="font-mono text-3xl md:text-5xl font-bold mb-6 text-[#016b62]">
               Ketika Mangrove Hilang, Harapan Tenggelam.
             </h2>
             <p className="text-lg md:text-xl text-[#333333] leading-relaxed">
@@ -468,16 +463,10 @@ export default function Home() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
             <div className="lg:col-span-1">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-[#016b62]" stroke="currentColor" strokeWidth="2">
-                    <path d="M2 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8-8-3.6-8-8z" />
-                    <path d="M6 14c2-2 4-2 6 0s4-2 6 0" />
-                  </svg>
-                </div>
-                <span className="font-heading font-bold text-2xl text-white">Greenwave</span>
+              <div className="mb 0">
+                <img src="/gre-clean.jpg" alt="Greenwave" className="h-40 w-auto" />
               </div>
-              <p className="text-white/70 leading-relaxed mb-6">
+              <p className="text-white/70 leading-relaxed mb-3">
                 Yayasan Greenwave berfokus pada konservasi lingkungan dan pemberdayaan masyarakat pesisir di Indonesia melalui model ekonomi sirkular.
               </p>
             </div>
