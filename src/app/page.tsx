@@ -26,33 +26,47 @@ export default function Home() {
     e.preventDefault();
     setCollabStatus("loading");
     setCollabMsg("");
+
     try {
-      /* 
-      // API call disabled for static export
-      const res = await fetch("/api/v1/collaborate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(collabForm),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setCollabStatus("success");
-        setCollabMsg(data.message);
-        setCollabForm({ companyName: "", email: "", focusArea: "", message: "" });
-      } else {
-        setCollabStatus("error");
-        setCollabMsg(data.message || data.errors?.[0]?.message || "Gagal mengirim formulir.");
-      }
-      */
-      // Simulation of success for static build
+      // WA.me configuration
+      const phoneNumber = "6281314337183";
+      
+      // Determine label for focus area
+      const focusLabels: Record<string, string> = {
+        csr: "Corporate Social Responsibility (CSR)",
+        esg: "Environmental, Social, & Governance (ESG)",
+        donor: "Donor & Filantropi",
+        other: "Bentuk Kolaborasi Lainnya"
+      };
+      const focusLabel = focusLabels[collabForm.focusArea] || collabForm.focusArea;
+
+      // Construct WhatsApp message
+      const message = `Halo Greenwave, saya ingin berkolaborasi.%0A%0A` +
+        `*Nama Instansi:* ${collabForm.companyName}%0A` +
+        `*Email:* ${collabForm.email}%0A` +
+        `*Fokus:* ${focusLabel}%0A` +
+        `*Pesan:* ${collabForm.message}`;
+
+      const waUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+      // Simulate a small delay for visual feedback before redirecting
       setTimeout(() => {
         setCollabStatus("success");
-        setCollabMsg("Terima kasih! Pesan Anda telah kami terima (Simulasi Mode Statis).");
-        setCollabForm({ companyName: "", email: "", focusArea: "", message: "" });
-      }, 1000);
+        setCollabMsg("Membuka WhatsApp... Mohon selesaikan pengiriman pesan Anda melalui aplikasi.");
+        
+        // Open WhatsApp in a new tab/app
+        window.open(waUrl, "_blank");
+        
+        // Reset form after a brief period
+        setTimeout(() => {
+          setCollabStatus("idle");
+          setCollabForm({ companyName: "", email: "", focusArea: "", message: "" });
+        }, 1500);
+      }, 800);
+      
     } catch (err) {
       setCollabStatus("error");
-      setCollabMsg("Gangguan koneksi dari browser.");
+      setCollabMsg("Gagal memproses permintaan WhatsApp.");
     }
   };
 

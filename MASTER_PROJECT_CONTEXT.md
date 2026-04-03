@@ -38,6 +38,7 @@ Proyek ini adalah sistem web Company Profile untuk GreenWave. Aplikasi ini sepen
   - **Static Optimization**: Menambahkan `export const dynamic = "force-static"` pada halaman utama untuk menjamin pembuatan aset statis saat proses build.
   - **Route Cleanup**: Memindahkan seluruh komponen dinamis (API, Admin, Middleware) ke folder backup demi kelancaran proses `next build`.
   - **Zod & Params**: Perbaikan manual pada *property access* Zod `.issues` dan asinkron params tetap dipertahankan dalam kode backup untuk referensi masa depan.
+  - **WhatsApp Integration (Collaboration Form)**: Mengganti simulasi pengiriman statis pada formulir kolaborasi dengan pengalihan langsung ke WhatsApp (`wa.me`). Implementasi mencakup format pesan otomatis yang berisi data dari formulir (Nama Instansi, Email, Fokus, dan Pesan), validasi input, serta dukungan *URL encoding* agar karakter khusus dapat terbaca sempurna oleh aplikasi WhatsApp.
 
 ## 6. Development Workflow (Docker)
 Proyek ini sekarang mendukung containerisasi untuk konsistensi lingkungan development dan simulasi produksi (Static HTML).
