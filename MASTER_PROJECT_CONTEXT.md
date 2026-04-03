@@ -36,3 +36,15 @@ Proyek ini adalah sistem web Company Profile untuk GreenWave. Aplikasi ini sepen
   - **Static Optimization**: Menambahkan `export const dynamic = "force-static"` pada halaman utama untuk menjamin pembuatan aset statis saat proses build.
   - **Route Cleanup**: Memindahkan seluruh komponen dinamis (API, Admin, Middleware) ke folder backup demi kelancaran proses `next build`.
   - **Zod & Params**: Perbaikan manual pada *property access* Zod `.issues` dan asinkron params tetap dipertahankan dalam kode backup untuk referensi masa depan.
+
+## 6. Development Workflow (Docker)
+Proyek ini sekarang mendukung containerisasi untuk konsistensi lingkungan development dan simulasi produksi (Static HTML).
+
+- **Port Utama**: 8003 (Local Browser: `http://localhost:8003/`)
+- **Fitur**: Hot-Reload aktif di mode dev. `node_modules` terisolasi di dalam container.
+- **Shortcuts (Makefile)**:
+  - `make start`: Menjalankan kontainer di *background*.
+  - `make stop`: Menghentikan kontainer.
+  - `make logs`: Memantau *application logs*.
+  - `make shell`: Masuk ke terminal kontainer.
+  - `make preview`: Membuat **Static Build** (bersih) dan menjalankannya via `npx serve` untuk tes hasil akhir murni sebelum di-push ke GitHub Pages.

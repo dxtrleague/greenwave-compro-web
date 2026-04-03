@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+.git
+.gitignore
+.DS_Store
+npm-debug.log
+README.md
+Dockerfile
+docker-compose.yml
+Makefile
+implementation_plan_docker.md
+build.log
+extract-db.ts
+prisma/dev.db

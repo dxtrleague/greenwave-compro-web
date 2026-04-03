@@ -4,8 +4,8 @@ const repoName = "greenwave-compro-web";
 
 const nextConfig = {
   output: "export",
-  basePath: isProd ? `/${repoName}` : "",
-  assetPrefix: isProd ? `/${repoName}` : "",
+  basePath: "",
+  assetPrefix: "",
   trailingSlash: true,
   images: {
     unoptimized: true,
