@@ -32,6 +32,7 @@ Proyek ini adalah sistem web Company Profile untuk GreenWave. Aplikasi ini sepen
 ## 5. Current Stability
 - **Build Status**: **STABLE** (Static Export Berhasil).
 - **Recent Fixes**:
+  - **UI/UX Fix (Logo Optimization)**: Mengganti penggunaan `.jpg` dengan `.svg` untuk logo guna menghindari distorsi ("peyang") dan masalah transparansi. Melakukan *fine-tuning* pada aset `gre.svg` (menghapus layer background putih, memangkas *whitespace* internal via `viewBox`, dan menyesuaikan koordinat X/Y) untuk memastikan logo sejajar secara vertikal dan horizontal (*pixel-perfect alignment*) dengan elemen navigasi.
   - **CI/CD Fix**: Menyelesaikan masalah folder `out/` tidak ditemukan dengan menonaktifkan generator otomatis di GitHub Actions dan beralih ke `next.config.mjs`.
   - **Static Optimization**: Menambahkan `export const dynamic = "force-static"` pada halaman utama untuk menjamin pembuatan aset statis saat proses build.
   - **Route Cleanup**: Memindahkan seluruh komponen dinamis (API, Admin, Middleware) ke folder backup demi kelancaran proses `next build`.

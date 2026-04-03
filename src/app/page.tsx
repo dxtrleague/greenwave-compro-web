@@ -93,9 +93,7 @@ export default function Home() {
       <header className="fixed top-0 w-full z-50 bg-[#ffffff]/90 backdrop-blur-md border-b border-[#D9EEF3]">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* emblem removed */}
-            {/* logo image instead of text - will use cleaned gre-clean.jpg */}
-            <img src="/gre-clean.jpg" alt="Greenwave" className="h-80 w-auto" />
+            <img src="/gre.svg" alt="Greenwave" className="h-14 w-auto" />
           </div>
 
           <nav className="hidden md:flex gap-8 text-[15px] font-medium text-[#171717]">
@@ -463,8 +461,8 @@ export default function Home() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
             <div className="lg:col-span-1">
-              <div className="mb 0">
-                <img src="/gre-clean.jpg" alt="Greenwave" className="h-40 w-auto" />
+              <div className="mb-0">
+                <img src="/gre.svg" alt="Greenwave" className="h-16 w-auto" />
               </div>
               <p className="text-white/70 leading-relaxed mb-3">
                 Yayasan Greenwave berfokus pada konservasi lingkungan dan pemberdayaan masyarakat pesisir di Indonesia melalui model ekonomi sirkular.
