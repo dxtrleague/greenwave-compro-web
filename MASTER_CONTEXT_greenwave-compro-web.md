@@ -32,6 +32,7 @@ Proyek ini adalah sistem web Company Profile untuk GreenWave. Aplikasi ini sepen
 ## 5. Current Stability
 - **Build Status**: **STABLE** (Static Export Berhasil).
 - **Recent Fixes**:
+  - **Pillar Icon & Title Case Optimization**: Mengganti ikon-ikon pada 5 Pilar Misi dengan ikon yang lebih relevan dan unik (tanpa duplikasi) menggunakan ikon dari `lucide-react`: `Wheat` (Produksi Pangan), `GraduationCap` (Penguatan Kapasitas), `Network` (Ekosistem Wilayah), `Sprout` (Praktik Berkelanjutan), dan `Lightbulb` (Transformasi Pola Pikir). Serta memformat penulisan judul pilar agar seragam menggunakan *Title Case*.
   - **Asset Fix (Product Catalog Images)**: Mengganti tautan gambar eksternal (Unsplash) yang tidak stabil dan tidak akurat dengan aset lokal di `/public/products/`. Menggunakan AI untuk menghasilkan gambar produk berkualitas tinggi yang lebih relevan dengan konteks mangrove (Madu Hutan Bakau, Keripik Buah Lindur, dan Batik Pewarna Alami).
   - **UI/UX Fix (Logo Optimization)**: Mengganti penggunaan `.jpg` dengan `.svg` untuk logo guna menghindari distorsi ("peyang") dan masalah transparansi. Melakukan *fine-tuning* pada aset `gre.svg` (menghapus layer background putih, memangkas *whitespace* internal via `viewBox`, dan menyesuaikan koordinat X/Y) untuk memastikan logo sejajar secara vertikal dan horizontal (*pixel-perfect alignment*) dengan elemen navigasi.
   - **CI/CD Fix**: Menyelesaikan masalah folder `out/` tidak ditemukan dengan menonaktifkan generator otomatis di GitHub Actions dan beralih ke `next.config.mjs`.

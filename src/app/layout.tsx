@@ -3,7 +3,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Yayasan Greenwave - Pemberdayaan Masyarakat & Konservasi Pesisir',
-  description: 'Memberdayakan Pesisir, Menjaga Masa Depan. Yayasan Greenwave mengubah mindset konservasi dari sekadar menanam mangrove menjadi menciptakan nilai ekonomi berkelanjutan bagi komunitas.',
+  description: 'Menumbuhkan Kemandirian Pangan, Menjaga Keberlanjutan Masa Depan. Yayasan Greenwave mengubah mindset konservasi dari sekadar menanam mangrove menjadi menciptakan nilai ekonomi berkelanjutan bagi komunitas.',
   keywords: ['Konservasi Mangrove', 'Pemberdayaan Pesisir', 'ESG', 'CSR Indonesia', 'Yayasan Lingkungan', 'Ekonomi Sirkular'],
   authors: [{ name: 'Yayasan Greenwave' }],
   creator: 'Yayasan Greenwave',

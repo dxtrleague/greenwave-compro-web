@@ -4,7 +4,7 @@ export const dynamic = "force-static";
 
 import { useState, useEffect } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, TrendingUp, HandHeart, Sprout, Landmark, Presentation, BriefcaseBusiness, Users, ShieldCheck, Mail, MapPin, Instagram, Linkedin, Facebook } from "lucide-react";
+import { Menu, X, ArrowRight, TrendingUp, HandHeart, Sprout, Landmark, Presentation, BriefcaseBusiness, Users, ShieldCheck, Mail, MapPin, Instagram, Linkedin, Facebook, Wheat, GraduationCap, Network, Lightbulb } from "lucide-react";
 
 import dbData from "@/data/production-data.json";
 
@@ -30,7 +30,7 @@ export default function Home() {
     try {
       // WA.me configuration
       const phoneNumber = "6281314337183";
-      
+
       // Determine label for focus area
       const focusLabels: Record<string, string> = {
         csr: "Corporate Social Responsibility (CSR)",
@@ -53,17 +53,17 @@ export default function Home() {
       setTimeout(() => {
         setCollabStatus("success");
         setCollabMsg("Membuka WhatsApp... Mohon selesaikan pengiriman pesan Anda melalui aplikasi.");
-        
+
         // Open WhatsApp in a new tab/app
         window.open(waUrl, "_blank");
-        
+
         // Reset form after a brief period
         setTimeout(() => {
           setCollabStatus("idle");
           setCollabForm({ companyName: "", email: "", focusArea: "", message: "" });
         }, 1500);
       }, 800);
-      
+
     } catch (err) {
       setCollabStatus("error");
       setCollabMsg("Gagal memproses permintaan WhatsApp.");
@@ -172,11 +172,11 @@ export default function Home() {
         <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="relative z-10 max-w-[1440px] mx-auto w-full">
           <div className="max-w-4xl text-center md:text-left mx-auto md:mx-0">
             <motion.h1 variants={fadeIn} className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold leading-tight md:leading-tight mb-6 text-white">
-              Memberdayakan Pesisir, <br className="hidden md:block" />
-              <span className="text-[#61B58E]">Menjaga Masa Depan.</span>
+              Menumbuhkan Kemandirian Pangan, <br className="hidden md:block" />
+              <span className="text-[#61B58E]">Menjaga Keberlanjutan Masa Depan.</span>
             </motion.h1>
             <motion.p variants={fadeIn} className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl leading-relaxed mx-auto md:mx-0">
-              Mengubah mindset konservasi dari sekadar menanam menjadi menciptakan nilai ekonomi yang nyata bagi masyarakat.
+              Gerakan kemandirian pangan yang dimulai pada tingkat tapak, dengan membangun sistem yang tangguh dari akar komunitas.
             </motion.p>
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <a href="#impact" className="px-8 py-3 bg-[#61B58E] text-white rounded-full font-semibold flex items-center justify-center transition-colors hover:bg-[#79BDB7]">
@@ -207,10 +207,10 @@ export default function Home() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24 text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="max-w-4xl mx-auto">
             <h2 className="font-mono text-3xl md:text-5xl font-bold mb-6 text-[#016b62]">
-              Ketika Mangrove Hilang, Harapan Tenggelam.
+              Dari Pekarangan, Lahir Ketahanan
             </h2>
             <p className="text-lg md:text-xl text-[#333333] leading-relaxed">
-              Indonesia menghadapi degradasi ekosistem pesisir dan tingginya angka kemiskinan masyarakat pesisir. Tanpa intervensi, kita tidak hanya kehilangan pohon, tapi juga masa depan komunitas pesisir.
+              Perubahan iklim meningkatkan tekanan terhadap ketahanan pangan. Di sisi lain, fluktuasi harga bahan pokok hingga ketergantungan pada rantai pasok yang panjang membutuhkan  pendekatan yang lebih kuat dari tingkat paling dasar: rumah tangga dan komunitas.
             </p>
           </motion.div>
         </div>
@@ -225,10 +225,10 @@ export default function Home() {
                 Solusi Berkelanjutan untuk Ekosistem Pesisir.
               </h2>
               <p className="text-lg md:text-xl text-[#333333] leading-relaxed mb-6">
-                Greenwave hadir melalui pemberdayaan masyarakat pesisir dan pelestarian lingkungan dengan mangrove sebagai pilot project utama.
+                Program ini hadir untuk menjawab tantangan tersebut dengan menggerakkan komunitas di tingkat RT/RW untuk menciptakan fondasi sistem pangan yang tangguh dan mandiri. Dimulai dengan pemanfaatan lahan terbatas, penguatan kapasitas, serta pendampingan berkelanjutan, komunitas didorong menjadi bagian dari solusi pangan. Tidak hanya sebagai konsumen, tapi sekaligus sebagai produsen.
               </p>
               <p className="text-lg md:text-xl text-[#333333] font-medium leading-relaxed">
-                Kami percaya kelestarian lingkungan dan peningkatan ekonomi harus berjalan bersamaan.
+                Kemandirian pangan yang kuat, selalu dimulai dari tingkat tapak.
               </p>
             </motion.div>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="relative h-[400px] rounded-[32px] overflow-hidden bg-gradient-to-tr from-[#61B58E] to-[#79BDB7] shadow-xl flex items-center justify-center">
@@ -268,7 +268,7 @@ export default function Home() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="max-w-4xl mx-auto text-center mb-20">
             <h2 className="font-heading text-3xl md:text-5xl font-bold mb-6 text-[#357427]">Visi Kami</h2>
             <p className="text-xl md:text-2xl text-[#171717] italic leading-relaxed font-heading">
-              "Mewujudkan ekosistem ekonomi masyarakat pesisir yang mandiri, berdaya saing, dan berkelanjutan melalui konservasi lingkungan."
+              "Berpartisipasi secara aktif dalam upaya penguatan pangan nasional melalui penguatan produksi di tingkat rumah tangga, serta berbasis komunitas demi mendorong pemerataan dan percepatan."
             </p>
           </motion.div>
 
@@ -279,11 +279,11 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
-                { title: "Ekonomi", icon: <TrendingUp className="text-[#61B58E]" size={32} />, desc: "Mengembangkan program pemberdayaan ekonomi berbasis mangrove." },
-                { title: "Kolaborasi", icon: <HandHeart className="text-[#79BDB7]" size={32} />, desc: "Membangun kolaborasi pemerintah, swasta, dan donor." },
-                { title: "Mindset", icon: <Sprout className="text-[#357427]" size={32} />, desc: "Mengubah mindset dari sekadar menanam menjadi menciptakan nilai ekonomi." },
-                { title: "Akses Pasar", icon: <Landmark className="text-[#016b62]" size={32} />, desc: "Membuka akses pasar bagi produk turunan mangrove." },
-                { title: "Knowledge", icon: <Presentation className="text-[#61B58E]" size={32} />, desc: "Menyebarkan pengetahuan dan praktik terbaik ke pesisir Indonesia." }
+                { title: "Produksi Pangan Berbasis Komunitas", icon: <Wheat className="text-[#61B58E]" size={32} />, desc: "Mendorong optimalisasi penggunaan pekarangan sebagai lahan pangan produktif di tingkat RT/RW." },
+                { title: "Penguatan Kapasitas Masyarakat", icon: <GraduationCap className="text-[#79BDB7]" size={32} />, desc: "Menyediakan pelatihan dan pendampingan teknis dengan model Training Of Trainers (ToT) untuk meningkatkan keterampilan produksi dan pengelolaan pangan." },
+                { title: "Pengembangan Ekosistem Pangan Berbasis Wilayah", icon: <Network className="text-[#357427]" size={32} />, desc: "Memperkuat jejaring dan kolaborasi di tingkat RT/RW untuk membangun sistem pangan lokal yang terintegrasi." },
+                { title: "Praktik Pangan Berkelanjutan", icon: <Sprout className="text-[#016b62]" size={32} />, desc: "Mendorong adopsi praktik produksi pangan yang efisien dari sisi biaya, serta ramah lingkungan dan adaptif terhadap perubahan iklim." },
+                { title: "Transformasi Pola Pikir Pangan", icon: <Lightbulb className="text-[#61B58E]" size={32} />, desc: "Menciptakan pemimpin-pemimpin ketahanan pangan baru di tingkat tapak dengan mengarusutamakan peran Ketua RT/RW." }
               ].map((pillar, idx) => (
                 <motion.div key={idx} variants={fadeIn} className="bg-[#D9EEF3]/30 p-8 rounded-[32px] border border-[#D9EEF3] hover:bg-[#D9EEF3]/50 transition-colors duration-300">
                   <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm">
