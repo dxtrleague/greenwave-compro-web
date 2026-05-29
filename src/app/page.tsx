@@ -4,7 +4,7 @@ export const dynamic = "force-static";
 
 import { useState, useEffect } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, TrendingUp, HandHeart, Sprout, Landmark, Presentation, BriefcaseBusiness, Users, ShieldCheck, Mail, MapPin, Instagram, Linkedin, Facebook, Wheat, GraduationCap, Network, Lightbulb } from "lucide-react";
+import { Menu, X, ArrowRight, TrendingUp, HandHeart, Sprout, Landmark, Presentation, BriefcaseBusiness, Users, ShieldCheck, Mail, MapPin, Instagram, Linkedin, Facebook, Wheat, GraduationCap, Network, Lightbulb, CheckCircle2 } from "lucide-react";
 
 import dbData from "@/data/production-data.json";
 
@@ -307,74 +307,92 @@ export default function Home() {
       </section>
 
       {/* 4. PAGE: PROGRAM & DAMPAK */}
-      <section id="program" className="py-20 md:py-32 bg-[#D9EEF3]">
+      <section id="program" className="py-12 md:py-24 bg-white relative overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="text-center mb-16">
-            <h2 className="font-heading text-3xl md:text-5xl font-bold text-[#357427]">Program & Dampak</h2>
-            <p className="text-lg mt-4 text-[#333333] max-w-2xl mx-auto">Kami berfokus pada pendekatan komprehensif, mulai dari lingkungan hingga ekonomi mandiri.</p>
-          </motion.div>
+          
+          {programsData.length > 0 && programsData.map((prog) => (
+            <div key={prog.id} className="flex flex-col gap-6 lg:gap-16">
+              {/* Editorial Header */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 mb-6 lg:mb-10 relative">
+                <div className="lg:col-span-8 relative z-10">
+                  <span className="text-[#61B58E] font-bold tracking-wider uppercase text-sm mb-4 block">
+                    Program & Dampak
+                  </span>
+                  <h2 className="font-heading text-5xl md:text-7xl font-bold text-[#016b62] mb-4 lg:mb-8 leading-tight">
+                    {prog.title}.
+                  </h2>
+                  <p className="text-xl text-[#333333] leading-relaxed mb-4 lg:mb-8">
+                    {prog.description.lead}
+                  </p>
 
-          <div className="flex flex-col gap-12">
-            {programsData.length > 0 ? (
-              programsData.map((prog, idx) => {
-                let IconComp = ShieldCheck;
-                if (prog.iconName === 'Target' || prog.iconName === 'BriefcaseBusiness') IconComp = BriefcaseBusiness;
-                if (prog.iconName === 'Presentation') IconComp = Presentation;
+                  {prog.description.columns && prog.description.columns.length > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 text-neutral-600 leading-relaxed text-[16px]">
+                      {prog.description.columns.map((col: string, cIdx: number) => (
+                        <p key={cIdx}>{col}</p>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
-                const isEven = idx % 2 === 0;
-                return (
-                  <motion.div key={prog.id} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className={`${isEven ? 'bg-white text-[#357427] border-[#D9EEF3]' : 'bg-gradient-to-br from-[#61B58E] to-[#357427] text-white'} rounded-[32px] p-8 md:p-12 shadow-sm flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 border`}>
-                    <div className="w-full md:w-1/3 flex justify-center">
-                      <div className={`w-32 h-32 ${isEven ? 'bg-[#D9EEF3]' : 'bg-white/20 backdrop-blur-md'} rounded-full flex items-center justify-center`}>
-                        <IconComp size={64} className={isEven ? "text-[#016b62]" : "text-white"} />
+                {/* Decorative Watermark (Right Column) */}
+                <div className="hidden lg:flex lg:col-span-4 items-center justify-center relative select-none">
+                  <Users size={320} className="text-[#016b62] opacity-5 transform rotate-12" />
+                </div>
+              </div>
+
+              {/* Bottom Split (Dampak & KPI) */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
+                {/* Kolom Kiri (Dampak) */}
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeIn}
+                  className="bg-[#F8FDFB] rounded-[32px] p-8 md:p-10 border border-[#D9EEF3] shadow-sm h-full"
+                >
+                  <h4 className="font-heading text-xl md:text-2xl font-bold text-[#357427] mb-4 lg:mb-6 flex items-center gap-2">
+                    <Sprout size={24} className="text-[#61B58E]" /> Dampak yang Diharapkan
+                  </h4>
+                  <ul className="space-y-4">
+                    {prog.impacts && prog.impacts.map((imp: string, iIdx: number) => (
+                      <li key={iIdx} className="flex items-start gap-3 text-[#333333]">
+                        <CheckCircle2 size={20} className="text-[#61B58E] shrink-0 mt-1" />
+                        <span className="leading-relaxed text-[15px]">{imp}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+
+                {/* Kolom Kanan (KPI / Indikator) */}
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeIn}
+                  className="h-full"
+                >
+                  <h4 className="font-heading text-xl md:text-2xl font-bold text-[#357427] mb-4 lg:mb-6 flex items-center gap-2 px-2">
+                    <TrendingUp size={24} className="text-[#61B58E]" /> Indikator Keberhasilan
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {prog.kpis && prog.kpis.map((kpi: any, kIdx: number) => (
+                      <div
+                        key={kIdx}
+                        className="bg-white/50 backdrop-blur-sm rounded-xl p-5 border border-[#D9EEF3] shadow-sm hover:shadow-md hover:bg-[#F8FDFB]/50 transition-all duration-300 flex flex-col justify-between"
+                      >
+                        <span className="font-heading text-[16px] font-bold text-[#016b62] block mb-2 leading-snug">
+                          {kpi.title}
+                        </span>
+                        <span className="text-xs text-neutral-600 leading-normal">
+                          {kpi.detail}
+                        </span>
                       </div>
-                    </div>
-                    <div className="w-full md:w-2/3">
-                      <h3 className="font-heading text-2xl md:text-3xl font-bold mb-4">{prog.title}</h3>
-                      <p className={`${isEven ? 'text-[#555555]' : 'text-white/90'} text-lg leading-relaxed`}>
-                        {prog.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                );
-              })
-            ) : (
-              <>
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-white rounded-[32px] p-8 md:p-12 shadow-sm flex flex-col md:flex-row items-center gap-8 border border-[#D9EEF3]">
-                  <div className="w-full md:w-1/3 flex justify-center">
-                    <div className="w-32 h-32 bg-[#D9EEF3] rounded-full flex items-center justify-center">
-                      <ShieldCheck size={64} className="text-[#016b62]" />
-                    </div>
-                  </div>
-                  <div className="w-full md:w-2/3">
-                    <h3 className="font-heading text-2xl md:text-3xl font-bold text-[#357427] mb-4">Pemulihan Ekosistem Pesisir (Environmental Protection)</h3>
-                    <p className="text-[#555555] text-lg leading-relaxed">
-                      Konservasi mangrove berbasis inovasi teknologi untuk memastikan pertumbuhan maksimal dan restorasi garis pantai secara efektif.
-                    </p>
+                    ))}
                   </div>
                 </motion.div>
-
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-gradient-to-br from-[#61B58E] to-[#357427] rounded-[32px] p-8 md:p-12 shadow-sm flex flex-col md:flex-row-reverse items-center gap-8 text-white">
-                  <div className="w-full md:w-1/3 flex justify-center">
-                    <div className="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-md">
-                      <BriefcaseBusiness size={64} className="text-white" />
-                    </div>
-                  </div>
-                  <div className="w-full md:w-2/3">
-                    <h3 className="font-heading text-2xl md:text-3xl font-bold mb-4">Produk Turunan Mangrove (Economic Empowerment)</h3>
-                    <p className="text-white/90 text-lg leading-relaxed mb-6">
-                      Menciptakan nilai tambah ekonomi tanpa merusak alam. Pendekatan sirkuler ini memberdayakan komunitas akar rumput.
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                      <span className="bg-white text-[#357427] px-4 py-2 rounded-full font-medium text-sm">Madu Hutan Bakau</span>
-                      <span className="bg-white text-[#357427] px-4 py-2 rounded-full font-medium text-sm">Keripik Buah Lindur</span>
-                      <span className="bg-white text-[#357427] px-4 py-2 rounded-full font-medium text-sm">Batik Pewarna Alami</span>
-                    </div>
-                  </div>
-                </motion.div>
-              </>
-            )}
-          </div>
+              </div>
+            </div>
+          ))}
 
           {productsData.length > 0 && (
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mt-20">

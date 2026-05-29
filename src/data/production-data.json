@@ -40,31 +40,48 @@
   ],
   "programs": [
     {
-      "id": "e252f500-bad0-4cee-b4f6-6e66388046e4",
-      "title": "Pemulihan Ekosistem Pesisir (Environmental Protection)",
-      "description": "Konservasi mangrove berbasis inovasi teknologi untuk memastikan pertumbuhan maksimal dan restorasi garis pantai secara efektif.",
-      "iconName": "ShieldCheck",
-      "isActive": 1,
-      "createdAt": 1771873335162,
-      "updatedAt": 1771873335162
-    },
-    {
-      "id": "cec916e5-b5f2-4295-92fe-bd1e08dd51e9",
-      "title": "Produk Turunan Mangrove (Economic Empowerment)",
-      "description": "Menciptakan nilai tambah ekonomi tanpa merusak alam. Pendekatan sirkuler ini memberdayakan komunitas akar rumput.",
-      "iconName": "BriefcaseBusiness",
-      "isActive": 1,
-      "createdAt": 1771873335162,
-      "updatedAt": 1771873335162
-    },
-    {
-      "id": "e8983516-5417-4580-81da-ffb4cb35069d",
-      "title": "Edukasi & Advokasi Pesisir",
-      "description": "Program pelatihan dan pendampingan bagi masyarakat lokal untuk memahami pentingnya ekosistem pesisir dan cara mengelolanya secara berkelanjutan.",
-      "iconName": "Presentation",
-      "isActive": 1,
-      "createdAt": 1771873335162,
-      "updatedAt": 1771873335162
+      "id": "pelatihan-komunitas",
+      "title": "Program Pelatihan Berbasis Komunitas",
+      "description": {
+        "lead": "Program ini mengadopsi pendekatan Training of Trainers (ToT) dengan menjadikan Ketua RT/RW sebagai agen penggerak utama dalam mendorong kemandirian pangan di wilayah kepemimpinan masing-masing.",
+        "columns": [
+          "Melalui pelatihan terstruktur, alih pengetahuan, dan pendampingan yang berkelanjutan, Ketua RT/RW dibekali kemampuan untuk mengoptimalkan pekarangan rumah (milik pribadi maupun komunal), mengembangkan kebun pangan, penerapan budidaya ternak yang sederhana, pembiayaan yang efisien, hemat energi, serta ramah lingkungan.",
+          "Pengetahuan ini kemudian dapat direpliki kepada warga untuk menciptakan efek pengganda (multiplier effect) yang memungkinkan implementasi adaptif ke seluruh wilayah Indonesia."
+        ]
+      },
+      "impacts": [
+        "Peningkatan ketahanan pangan rumah tangga",
+        "Penguatan sistem pangan lokal berbasis komunitas",
+        "Efisiensi pengeluaran rumah tangga untuk kebutuhan pangan, dan dalam jangka panjang berpotensi ekonomi.",
+        "Penguatan kapasitas dan kepemimpinan lokal",
+        "Replikasi program secara luas di berbagai wilayah Indonesia."
+      ],
+      "kpis": [
+        {
+          "title": "Cakupan Program",
+          "detail": "Jumlah RT/RW yang mengikuti pelatihan, serta jumlah wilayah yang dijangkau."
+        },
+        {
+          "title": "Adopsi di Tingkat Rumah Tangga",
+          "detail": "Jumlah pekarangan produktif yang terbentuk."
+        },
+        {
+          "title": "Output Produksi Pangan",
+          "detail": "Jenis dan volume hasil produksi, serta frekuensi panen."
+        },
+        {
+          "title": "Keberlanjutan",
+          "detail": "Persentase program yang tetap berjalan setelah 6-12 bulan."
+        },
+        {
+          "title": "Skalabilitas dan Replikasi",
+          "detail": "Kemitraan dengan pemerintah daerah dan pemangku kepentingan lainnya."
+        },
+        {
+          "title": "Dampak Ekonomi",
+          "detail": "Estimasi nilai substitusi konsumsi dan potensi penjualan."
+        }
+      ]
     }
   ],
   "products": [
