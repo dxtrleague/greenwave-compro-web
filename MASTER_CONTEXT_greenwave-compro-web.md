@@ -13,6 +13,7 @@ Proyek ini adalah sistem web Company Profile untuk GreenWave. Aplikasi ini sepen
 
 ## 3. Architecture Map
 - **`src/app/`**: Berisi rute publik. Hanya mendukung komponen statis karena batasan *static export*.
+- **`src/components/`**: Berisi komponen-komponen antarmuka modular (seperti `HeroSection.tsx`, `BoardMembers.tsx`).
 - **`src/data/`**: Pusat data utama aplikasi. Menggantikan peran database (Prisma/SQLite) untuk lingkungan produksi.
 - **Backup Folders**: 
   - `src/api_backup/`: Berisi kode API yang tidak bisa digunakan dalam *static export*.
@@ -41,6 +42,7 @@ Proyek ini adalah sistem web Company Profile untuk GreenWave. Aplikasi ini sepen
   - **Zod & Params**: Perbaikan manual pada *property access* Zod `.issues` dan asinkron params tetap dipertahankan dalam kode backup untuk referensi masa depan.
   - **WhatsApp Integration (Collaboration Form)**: Mengganti simulasi pengiriman statis pada formulir kolaborasi dengan pengalihan langsung ke WhatsApp (`wa.me`). Implementasi mencakup format pesan otomatis yang berisi data dari formulir (Nama Instansi, Email, Fokus, dan Pesan), validasi input, serta dukungan *URL encoding* agar karakter khusus dapat terbaca sempurna oleh aplikasi WhatsApp.
   - **Program & Dampak Refactoring**: Merestrukturisasi data program pada `src/data/production-data.json` dengan skema berbasis JSON yang terstruktur hasil ekstraksi program "Pelatihan Berbasis Komunitas". Merombak antarmuka pengguna pada komponen Program & Dampak di `src/app/page.tsx` menggunakan pendekatan **Magazine Editorial** (dengan top asymmetric grid, tipografi raksasa `text-7xl` yang didesain clean, pemanfaatan white space, watermark Lucide `Users` raksasa dengan opacity super rendah di kolom kanan, serta menyatukan keseluruhan layout visual sebagai satu section utuh tanpa garis pembatas atas), serta bottom split layout menggunakan *Bento Grid* untuk mini-dashboard card indikator keberhasilan (KPI) dengan format *Title Case* pada semua judulnya dan detail penjelasan yang dirender secara langsung sebagai pernyataan tegas tanpa tanda kurung penjelas. Seluruh spasi, margin, dan gap telah dioptimalkan secara responsif (Mobile-First approach) untuk merapatkan whitespace berlebih di layar HP tanpa mengurangi keindahan visual di desktop.
+  - **Board Members (Profil Pengurus) Implementation**: Menambahkan data pengurus baru hasil ekstraksi dari screenshot pengurus (`Miska Lail`, `Rubi Purnomo`, `Amalia Belmika`) ke dalam `src/data/production-data.json`. Membuat komponen modular baru `src/components/BoardMembers.tsx` dengan layout Minimalist Accordion menggunakan animasi `framer-motion` (AnimatePresence) yang bersih, responsif, dan hemat tempat untuk merender detail deskripsi panjang pengurus secara elegan tanpa merusak struktur visual layout saat diintegrasikan ke halaman utama.
 
 ## 6. Development Workflow (Docker)
 Proyek ini sekarang mendukung containerisasi untuk konsistensi lingkungan development dan simulasi produksi (Static HTML).

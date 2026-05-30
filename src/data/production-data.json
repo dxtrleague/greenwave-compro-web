@@ -131,5 +131,36 @@
       "createdAt": 1771664422399,
       "updatedAt": 1771746748600
     }
+  ],
+  "boardMembers": [
+    {
+      "id": "miska-lail",
+      "name": "Miska Lail",
+      "role": "Ketua",
+      "descriptions": [
+        "Miska Lail adalah Ketua Yayasan Greenwave yang memiliki rekam jejak panjang di bidang keberlanjutan, pendidikan lingkungan, dan komunikasi strategis. Ia pernah aktif di Green School Bali, sebuah pengalaman yang mengasah kepekaan terhadap pendekatan pendidikan yang berpihak pada alam dan pemberdayaan komunitas.",
+        "Sebelumnya, ia juga berkarier sebagai konsultan di Edelman, di mana ia mengelola berbagai program CSR lintas sektor untuk klien-klien korporat berskala besar. Miska merupakan pendiri Catering Asri Indo sejak tahun 2005, sebuah usaha kuliner berbasis Jakarta yang mencerminkan komitmennya pada sistem pangan yang lokal, efisien, dan berkelanjutan.",
+        "Di Greenwave, Miska memimpin inisiatif kemandirian pangan berbasis komunitas, mendorong keterlibatan aktif masyarakat di tingkat RT/RW, serta membangun ekosistem kolaborasi antara komunitas, sektor swasta, dan pemerintah demi ketahanan pangan yang lebih merata dan berdampak jangka panjang."
+      ]
+    },
+    {
+      "id": "rubi-purnomo",
+      "name": "Rubi Purnomo",
+      "role": "Ketua Dewan Pembina",
+      "descriptions": [
+        "Rubi W. Purnomo adalah praktisi senior dengan pengalaman lebih dari tiga dekade di beberapa perusahaan international di dalam dan luar negeri, dalam mengintegrasikan komunikasi strategis, Corporate Social Responsibility (CSR) dan keberlanjutan yang berdampak luas dan terukur.",
+        "Saat ini, sebagai Pembina Yayasan Greenwave dan Advisor HSE di industri tambang, fokus utamanya adalah mentransformasi operasional industri melalui inisiatif community development yang tidak sekadar bersifat filantropis, melainkan fokus pada penguatan kapasitas lokal dan kemandirian ekonomi.",
+        "Visi profesionalnya adalah menciptakan harmoni antara industri dan kesejahteraan sosial, di mana masyarakat sekitar bukan lagi sekadar objek, melainkan subjek pembangunan yang berdaya, serta memastikan penciptaan ekosistem masyarakat yang sejahtera secara berkelanjutan."
+      ]
+    },
+    {
+      "id": "amalia-belmika",
+      "name": "Amalia Belmika",
+      "role": "Dewan Pembina",
+      "descriptions": [
+        "Amalia Belmika adalah anggota dewan pembina Greenwave Foundation yang memiliki pengalaman luas dalam mendampingi berbagai inisiatif strategis yang berkaitan dengan sustainability, ekonomi hijau, konservasi lingkungan, penguatan ketahanan pangan komunitas, dan pengembangan industri berkelanjutan.",
+        "Di Greenwave, Amalia aktif menjembatani kebutuhan antara sektor swasta, pemerintah, komunitas, dan publik melalui pendekatan strategis yang berbasis dampak."
+      ]
+    }
   ]
 }

@@ -7,6 +7,7 @@ import { motion, Variants, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, TrendingUp, HandHeart, Sprout, Landmark, Presentation, BriefcaseBusiness, Users, ShieldCheck, Mail, MapPin, Instagram, Linkedin, Facebook, Wheat, GraduationCap, Network, Lightbulb, CheckCircle2 } from "lucide-react";
 
 import dbData from "@/data/production-data.json";
+import BoardMembers from "@/components/BoardMembers";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,6 +17,7 @@ export default function Home() {
   const [impactData, setImpactData] = useState<any[]>(dbData.impactMetrics);
   const [programsData, setProgramsData] = useState<any[]>(dbData.programs);
   const [productsData, setProductsData] = useState<any[]>(dbData.products);
+  const [boardMembersData, setBoardMembersData] = useState<any[]>(dbData.boardMembers || []);
 
   // Form State
   const [collabForm, setCollabForm] = useState({ companyName: "", email: "", focusArea: "", message: "" });
@@ -84,11 +86,11 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Sync CMS Data (Initial state already set from dbData import)
   useEffect(() => {
     setImpactData(dbData.impactMetrics);
     setProgramsData(dbData.programs);
     setProductsData(dbData.products);
+    setBoardMembersData(dbData.boardMembers || []);
   }, []);
 
   const fadeIn: Variants = {
@@ -423,6 +425,35 @@ export default function Home() {
               </div>
             </motion.div>
           )}
+        </div>
+      </section>
+
+      {/* Profil Pengurus Section */}
+      <section id="pengurus" className="py-20 bg-[#F8FDFB]">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="text-center mb-12"
+          >
+            <h2 className="font-heading text-3xl md:text-5xl font-bold text-[#357427] mb-4">
+              Profil Pengurus
+            </h2>
+            <p className="text-lg text-[#555555] max-w-2xl mx-auto">
+              Kenali lebih dekat jajaran pengurus dan dewan pembina Yayasan Greenwave yang berdedikasi tinggi untuk keberlanjutan lingkungan.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+          >
+            <BoardMembers data={boardMembersData} />
+          </motion.div>
         </div>
       </section>
 
