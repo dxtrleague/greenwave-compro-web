@@ -103,6 +103,19 @@ export default function Home() {
     visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
   };
 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  };
+
   return (
     <div className="min-h-screen bg-[#ffffff] text-[#000000] overflow-x-hidden font-body">
       {/* 1. GLOBAL NAVIGATION */}
@@ -320,7 +333,13 @@ export default function Home() {
             <div key={prog.id} className="flex flex-col gap-6 lg:gap-16">
               {/* Editorial Header */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 mb-6 lg:mb-10 relative">
-                <div className="lg:col-span-8 relative z-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="lg:col-span-8 relative z-10"
+                >
                   <span className="text-[#61B58E] font-bold tracking-wider uppercase text-sm mb-4 block">
                     Program & Dampak
                   </span>
@@ -338,12 +357,18 @@ export default function Home() {
                       ))}
                     </div>
                   )}
-                </div>
+                </motion.div>
 
                 {/* Decorative Watermark (Right Column) */}
-                <div className="hidden lg:flex lg:col-span-4 items-center justify-center relative select-none">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="hidden lg:flex lg:col-span-4 items-center justify-center relative select-none"
+                >
                   <Users size={320} className="text-[#016b62] opacity-5 transform rotate-12" />
-                </div>
+                </motion.div>
               </div>
 
               {/* Bottom Split (Dampak & KPI) */}
@@ -360,14 +385,20 @@ export default function Home() {
                   <h4 className="font-heading text-xl md:text-2xl font-bold text-[#357427] mb-4 lg:mb-6 flex items-center gap-2">
                     <Sprout size={24} className="text-[#61B58E]" /> Dampak yang Diharapkan
                   </h4>
-                  <ul className="space-y-4">
+                  <motion.ul
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    className="space-y-4"
+                  >
                     {prog.impacts && prog.impacts.map((imp: string, iIdx: number) => (
-                      <li key={iIdx} className="flex items-start gap-3 text-[#333333]">
+                      <motion.li key={iIdx} variants={itemVariants} className="flex items-start gap-3 text-[#333333]">
                         <CheckCircle2 size={20} className="text-[#61B58E] shrink-0 mt-1" />
                         <span className="leading-relaxed text-[15px]">{imp}</span>
-                      </li>
+                      </motion.li>
                     ))}
-                  </ul>
+                  </motion.ul>
                 </motion.div>
 
                 {/* Kolom Kanan (KPI / Indikator) */}
@@ -381,10 +412,17 @@ export default function Home() {
                   <h4 className="font-heading text-xl md:text-2xl font-bold text-[#357427] mb-4 lg:mb-6 flex items-center gap-2 px-2">
                     <TrendingUp size={24} className="text-[#61B58E]" /> Indikator Keberhasilan
                   </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+                  >
                     {prog.kpis && prog.kpis.map((kpi: any, kIdx: number) => (
-                      <div
+                      <motion.div
                         key={kIdx}
+                        variants={itemVariants}
                         className="bg-white/50 backdrop-blur-sm rounded-xl p-5 border border-[#D9EEF3] shadow-sm hover:shadow-md hover:bg-[#F8FDFB]/50 transition-all duration-300 flex flex-col justify-between"
                       >
                         <span className="font-heading text-[16px] font-bold text-[#016b62] block mb-2 leading-snug">
@@ -393,9 +431,9 @@ export default function Home() {
                         <span className="text-xs text-neutral-600 leading-normal">
                           {kpi.detail}
                         </span>
-                      </div>
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 </motion.div>
               </div>
             </div>
