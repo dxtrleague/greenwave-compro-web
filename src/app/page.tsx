@@ -112,20 +112,25 @@ export default function Home() {
             <img src="/gre.svg" alt="Greenwave" className="h-14 w-auto" />
           </div>
 
-          <nav className="hidden md:flex gap-8 text-[15px] font-medium text-[#171717]">
-            <a href="#beranda" className="hover:text-[#61B58E] transition-colors">Beranda</a>
-            <a href="#tentang-kami" className="hover:text-[#61B58E] transition-colors">Tentang Kami</a>
-            <a href="#program" className="hover:text-[#61B58E] transition-colors">Program</a>
-            <a href="#knowledge" className="hover:text-[#61B58E] transition-colors">Knowledge</a>
-            <a href="#kolaborasi" className="hover:text-[#61B58E] transition-colors">Kolaborasi</a>
-          </nav>
+          {/* Child 2: Nav & CTA Wrapper (Right) */}
+          <div className="hidden md:flex items-center gap-10">
+            {/* Desktop Navigation */}
+            <nav className="flex gap-8 text-[15px] font-medium text-[#171717]">
+              <a href="#beranda" className="hover:text-[#61B58E] transition-colors">Beranda</a>
+              <a href="#tentang-kami" className="hover:text-[#61B58E] transition-colors">Tentang Kami</a>
+              <a href="#program" className="hover:text-[#61B58E] transition-colors">Program</a>
+              <a href="#pengurus" className="hover:text-[#61B58E] transition-colors">Pengurus</a>
+            </nav>
 
-          <div className="hidden md:block">
-            <a href="#kolaborasi" className="px-6 py-2.5 bg-[#61B58E] text-white rounded-full font-medium hover:bg-[#357427] transition-all duration-300">
-              Mulai Kolaborasi
-            </a>
+            {/* CTA Button */}
+            <div>
+              <a href="#kolaborasi" className="px-6 py-2.5 bg-[#61B58E] text-white rounded-full font-medium hover:bg-[#357427] transition-all duration-300">
+                Mulai Kolaborasi
+              </a>
+            </div>
           </div>
 
+          {/* Mobile Hamburger Button */}
           <button className="md:hidden text-[#357427]" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -137,8 +142,7 @@ export default function Home() {
             <a href="#beranda" className="text-lg font-medium" onClick={() => setIsMenuOpen(false)}>Beranda</a>
             <a href="#tentang-kami" className="text-lg font-medium" onClick={() => setIsMenuOpen(false)}>Tentang Kami</a>
             <a href="#program" className="text-lg font-medium" onClick={() => setIsMenuOpen(false)}>Program</a>
-            <a href="#knowledge" className="text-lg font-medium" onClick={() => setIsMenuOpen(false)}>Knowledge</a>
-            <a href="#kolaborasi" className="text-lg font-medium" onClick={() => setIsMenuOpen(false)}>Kolaborasi</a>
+            <a href="#pengurus" className="text-lg font-medium" onClick={() => setIsMenuOpen(false)}>Pengurus</a>
             <a href="#kolaborasi" className="mt-4 text-center py-3 bg-[#61B58E] text-white rounded-full font-medium" onClick={() => setIsMenuOpen(false)}>
               Mulai Kolaborasi
             </a>
@@ -241,7 +245,7 @@ export default function Home() {
       </section>
 
       {/* Impact Highlights (Data-Driven from CMS) */}
-      <section id="impact" className="py-20 bg-[#D9EEF3]">
+      <section className="py-20 bg-[#D9EEF3]">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {impactData.map((metric, idx) => {
@@ -309,9 +313,9 @@ export default function Home() {
       </section>
 
       {/* 4. PAGE: PROGRAM & DAMPAK */}
-      <section id="program" className="py-12 md:py-24 bg-white relative overflow-hidden">
+      <section id="program" className="py-12 md:py-24 bg-white relative overflow-hidden scroll-mt-12">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24">
-          
+
           {programsData.length > 0 && programsData.map((prog) => (
             <div key={prog.id} className="flex flex-col gap-6 lg:gap-16">
               {/* Editorial Header */}
@@ -343,9 +347,10 @@ export default function Home() {
               </div>
 
               {/* Bottom Split (Dampak & KPI) */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
+              <div id="impact" className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 scroll-mt-30">
                 {/* Kolom Kiri (Dampak) */}
                 <motion.div
+                  id="impact"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
@@ -429,7 +434,7 @@ export default function Home() {
       </section>
 
       {/* Profil Pengurus Section */}
-      <section id="pengurus" className="py-20 bg-[#F8FDFB]">
+      <section id="pengurus" className="py-20 bg-[#F8FDFB] scroll-mt-24">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24">
           <motion.div
             initial="hidden"
@@ -539,6 +544,7 @@ export default function Home() {
                   <li><a href="#beranda" className="hover:text-[#61B58E] transition-colors">Beranda</a></li>
                   <li><a href="#tentang-kami" className="hover:text-[#61B58E] transition-colors">Tentang Kami</a></li>
                   <li><a href="#program" className="hover:text-[#61B58E] transition-colors">Program</a></li>
+                  <li><a href="#pengurus" className="hover:text-[#61B58E] transition-colors">Pengurus</a></li>
                   <li><a href="#kolaborasi" className="hover:text-[#61B58E] transition-colors">Kolaborasi</a></li>
                 </ul>
               </div>
